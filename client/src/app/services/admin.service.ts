@@ -18,4 +18,8 @@ export class AdminService {
   newProduct(product: FormData): Observable<any> {
     return this.http.post('/api/products/admin', product)
   }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.http.post('/api/products/admin/delete', {id: id})
+  }
 }

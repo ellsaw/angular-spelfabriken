@@ -14,7 +14,7 @@ export class AdminProductsComponent {
 
   products: ProductsForAdmin[] = [];
 
-  ngOnInit(): void{
+  fetchProducts(): void{
     this.adminService.getProductsForAdmin().subscribe((data: ProductsForAdmin[]) => this.products = data)
 
     this.products.forEach((product) => {
@@ -23,10 +23,22 @@ export class AdminProductsComponent {
 
       product.price = formatPrice(product.price)
     })
+  }
 
+  ngOnInit(): void{
+    this.fetchProducts();
   }
 
   deleteProduct(id: number, productName: string, brand: string): void{
-    
+    if(!confirm(`Är du säker på att du vill ta bort ${brand} - ${productName}?\nDetta kan inte ångras.`)) return;
+
+    this.adminService.deleteProduct(id).subscribe({
+      next: (_) => {
+        this.fetchProducts();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
   }
 }
