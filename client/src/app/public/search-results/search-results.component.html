@@ -1,0 +1,25 @@
+<section class="min-h-screen">
+    <div class="px-golden-lg pt-golden-md">
+      <ng-container *ngIf="products">
+        <ng-container *ngIf="products.length > 0; else noResults">
+          <h2 class="text-md font-bold">Visar resultat för {{ query }}</h2>
+          <p class="font-semibold">{{ products.length }} {{ products.length === 1 ? 'produkt' : 'produkter' }}</p>
+        </ng-container>
+  
+        <ng-template #noResults>
+          <div class="flex flex-col items-center gap-golden-lg my-golden-xl">
+            <h2 class="text-md font-semibold">Hittade inga resultat för {{ query }}</h2>
+            <a class="bg-primary text-white px-golden-lg py-golden-md rounded-lg font-semibold hover:bg-primary-40l" routerLink="/">Gå tillbaka till start</a>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+  
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 *:px-golden-lg *:py-golden-xl *:border-b-[1px] *:border-border last:border-none">
+      <ng-container *ngIf="products">
+        <div *ngFor="let product of products">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      </ng-container>
+    </div>
+  </section>

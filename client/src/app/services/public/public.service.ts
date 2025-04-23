@@ -24,4 +24,8 @@ export class PublicService {
   getRelatedProducts(id: number): Observable<ProductForCard[]>{
     return this.http.get<ProductForCard[]>(`/api/products/store/related-products/${id}`)
   }
+
+  getSearchResults(query: string): Observable<ProductForCard[]>{
+    return this.http.get<ProductForCard[]>(`/api/products/store/search/${query}`)
+  }
 }

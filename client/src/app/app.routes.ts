@@ -5,6 +5,7 @@ import { AdminNewProductComponent } from './admin/admin-new-product/admin-new-pr
 import { PublicLayoutComponent } from './public/public-layout/public-layout.component';
 import { HomeComponent } from './public/home/home.component';
 import { ProductDetailsComponent } from './public/product-details/product-details.component';
+import { SearchResultsComponent } from './public/search-results/search-results.component';
 
 export const routes: Routes = [
     {
@@ -12,7 +13,8 @@ export const routes: Routes = [
         component: PublicLayoutComponent,
         children: [
             {path: "", pathMatch: 'full', component: HomeComponent},
-            {path: "produkt/:slug", component: ProductDetailsComponent}
+            {path: "produkt/:slug", component: ProductDetailsComponent},
+            {path: "hitta", component: SearchResultsComponent}
         ]
     },
     {
