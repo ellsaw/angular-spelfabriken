@@ -1,0 +1,5 @@
+<a [routerLink]="href" [ngClass]="{
+    'py-golden-sm px-golden-md rounded-md transition-all duration-100': true,
+    'border-1 border-primary text-white bg-primary': isActive(href),
+    'border-1 border-border text-border hover:text-primary hover:border-primary': !isActive(href)
+  }">{{label}}</a>
