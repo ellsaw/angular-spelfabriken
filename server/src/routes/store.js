@@ -43,7 +43,7 @@ router.get('/product-details/:slug', (req, res) => {
     const {product, error} = dbGetForProductDetails(slug);
 
     if(product){
-        res.status(200).json({ product: product })
+        res.status(200).json(product)
     }else if(error){
         res.status(500).json({error: error})
     }else{

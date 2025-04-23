@@ -4,13 +4,15 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminNewProductComponent } from './admin/admin-new-product/admin-new-product.component';
 import { PublicLayoutComponent } from './public/public-layout/public-layout.component';
 import { HomeComponent } from './public/home/home.component';
+import { ProductDetailsComponent } from './public/product-details/product-details.component';
 
 export const routes: Routes = [
     {
         path: "",
         component: PublicLayoutComponent,
         children: [
-            {path: "", pathMatch: 'full', component: HomeComponent}
+            {path: "", pathMatch: 'full', component: HomeComponent},
+            {path: "produkt/:slug", component: ProductDetailsComponent}
         ]
     },
     {

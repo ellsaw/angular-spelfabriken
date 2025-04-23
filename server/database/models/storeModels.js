@@ -141,9 +141,7 @@ function dbGetForProductDetails(slug){
             description,
             brand,
             supercategory,
-            supercategory_slug,
             category,
-            category_slug,
             img,
             price,
             campaign_price

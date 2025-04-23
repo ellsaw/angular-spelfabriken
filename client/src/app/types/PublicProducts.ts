@@ -7,3 +7,9 @@ export interface ProductForCard{
     campaign_price: number | null,
     slug: string
 }
+
+export interface ProductForDetails extends ProductForCard {
+    description: string,
+    supercategory: string,
+    category: string
+}

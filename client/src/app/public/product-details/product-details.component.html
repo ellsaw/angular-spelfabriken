@@ -1,0 +1,53 @@
+<article class="px-golden-lg py-golden-md">
+    <div>
+      <div class="text-primary text-sm font-bold leading-8 align-baseline">
+        <span class="hover:underline">{{ product.supercategory }}</span>
+        <span class="text-black"> / </span>
+        <span class="hover:underline">{{ product.category }}</span>
+      </div>
+      <h2 class="font-bold text-md leading-6">{{ product.product_name }}</h2>
+      <p class="leading-6 text-neutral-500 font-medium">{{ product.brand }}</p>
+    </div>
+  
+    <div class="mt-golden-md flex gap-golden-lg flex-col sm:flex-row">
+      <div class="aspect-video w-full h-fit sm:flex-5">
+        <img class="object-contain size-full" [src]="product.img" alt="" />
+      </div>
+  
+      <div class="flex flex-col gap-golden-md w-full sm:flex-3">
+        <div class="h-full flex justify-center items-center">
+          <div *ngIf="product.campaign_price; else regularPrice" class="mb-golden-md text-center">
+            <p class="font-light line-through text-neutral-500">{{ product.price | formatPrice }} kr</p>
+            <p class="font-bold leading-4 text-red-600 text-lg md:text-5xl md:leading-12">{{ product.campaign_price | formatPrice }} kr</p>
+          </div>
+          <ng-template #regularPrice>
+            <p class="text-lg text-center font-semibold md:text-5xl md:leading-12">{{ product.price | formatPrice }} kr</p>
+          </ng-template>
+        </div>
+  
+        <div>
+          <p class="text-green-600 font-bold leading-6">50+ i lager</p>
+          <p class="font-light leading-4">Förväntad leveranstid: <span class="font-medium">2-4 arbetsdagar</span></p>
+        </div>
+  
+          <button
+            class="text-white bg-primary hover:bg-primary-40l py-golden-md w-full rounded-md font-semibold cursor-pointer mt-golden-md">
+            Lägg i varukorgen
+          </button>
+  
+        <div class="flex text-center font-semibold">
+          <div class="flex-1"><p><span class="text-green-600">✓</span> Fri frakt</p></div>
+          <div class="flex-1"><p><span class="text-green-600">✓</span> Fria returer</p></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="mt-golden-xl">
+      <h3 class="font-semibold mb-golden-md">Beskrivning:</h3>
+      <div class="max-h-46 overflow-hidden relative">
+        <p class="">{{product.description}}</p>
+      </div>
+    </section>
+    <app-related-carousel [id]="product.id"/>
+  </article>
+  
