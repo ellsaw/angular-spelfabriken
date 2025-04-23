@@ -1,0 +1,18 @@
+<section>
+    <h2 class="font-semibold text-md mb-golden-md">Varukorg</h2>
+  
+    <ul class="border-[1px] border-border px-golden-lg py-golden-md flex flex-col rounded-md">
+      <li *ngFor="let item of cart.items">
+        <app-cart-item [id]="item.id" [quantity]="item.quantity"></app-cart-item>
+      </li>
+    </ul>
+  
+    <div class="mt-golden-md px-golden-lg">
+      <div class="flex justify-between">
+        <p class="font-semibold">
+          Totalsumma inkl. moms:
+          <span>{{ cart.sum | formatPrice }} kr</span>
+        </p>
+      </div>
+    </div>
+  </section>

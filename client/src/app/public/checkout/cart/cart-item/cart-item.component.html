@@ -1,0 +1,67 @@
+<li class="border-b-[1px] border-border last:border-none">
+    <article *ngIf="product" class="flex flex-col py-golden-lg">
+      <div class="flex items-start justify-between gap-golden-md">
+        <div class="flex gap-golden-md flex-1">
+          <div class="aspect-video w-12 shrink-0">
+            <a class="size-full" [routerLink]="['/produkt', product.slug]">
+              <img
+                class="size-full object-contain"
+                [src]="product.img"
+                alt=""
+              />
+            </a>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-medium hover:underline line-clamp-1">
+              <a [routerLink]="['/produkt', product.slug]">
+                {{ product.product_name }}
+              </a>
+            </h4>
+            <p class="text-neutral-500 -mt-2">{{ product.brand }}</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-golden-md">
+          <p
+            class="text-right font-semibold"
+            [ngClass]="{ 'text-red-600': product.campaign_price }"
+          >
+            {{ (product.campaign_price || product.price) | formatPrice }} kr
+          </p>
+        </div>
+      </div>
+  
+      <div class="flex justify-end gap-golden-lg mt-golden-sm">
+        <div class="flex w-24">
+          <button
+            class="flex-1 bg-border hover:bg-neutral-600 text-white rounded-l-lg font-bold cursor-pointer"
+            aria-label="Minska antal produkter"
+            (click)="quantity === 1 ? removeFromCart() : decrement()"
+          >
+            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M18 12.998H6a1 1 0 0 1 0-2h12a1 1 0 0 1 0 2" />
+            </svg>
+          </button>
+          <p class="flex-2 text-center">{{ quantity }}</p>
+          <button
+            class="flex-1 bg-border hover:bg-neutral-600 text-white rounded-r-lg font-bold cursor-pointer"
+            aria-label="Öka antal produkter"
+            (click)="increment()"
+          >
+            <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2" />
+            </svg>
+          </button>
+        </div>
+  
+        <button
+          class="size-6 rounded-full bg-border hover:bg-red-600 font-bold text-white cursor-pointer"
+          aria-label="Ta bort från varukorgen"
+          (click)="removeFromCart()"
+        >
+          <svg class="m-auto" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4" />
+          </svg>
+        </button>
+      </div>
+    </article>
+  </li>

@@ -28,4 +28,8 @@ export class PublicService {
   getSearchResults(query: string): Observable<ProductForCard[]>{
     return this.http.get<ProductForCard[]>(`/api/products/store/search/${query}`)
   }
+
+  getForCart(id: number): Observable<ProductForCard>{
+    return this.http.get<ProductForCard>(`/api/products/store/cart/${id}`)
+  }
 }

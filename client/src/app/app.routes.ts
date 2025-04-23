@@ -6,6 +6,7 @@ import { PublicLayoutComponent } from './public/public-layout/public-layout.comp
 import { HomeComponent } from './public/home/home.component';
 import { ProductDetailsComponent } from './public/product-details/product-details.component';
 import { SearchResultsComponent } from './public/search-results/search-results.component';
+import { CheckoutComponent } from './public/checkout/checkout.component';
 
 export const routes: Routes = [
     {
@@ -14,7 +15,8 @@ export const routes: Routes = [
         children: [
             {path: "", pathMatch: 'full', component: HomeComponent},
             {path: "produkt/:slug", component: ProductDetailsComponent},
-            {path: "hitta", component: SearchResultsComponent}
+            {path: "hitta", component: SearchResultsComponent},
+            {path: "kassa", component: CheckoutComponent}
         ]
     },
     {

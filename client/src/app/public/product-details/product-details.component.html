@@ -30,10 +30,17 @@
           <p class="font-light leading-4">Förväntad leveranstid: <span class="font-medium">2-4 arbetsdagar</span></p>
         </div>
   
-          <button
-            class="text-white bg-primary hover:bg-primary-40l py-golden-md w-full rounded-md font-semibold cursor-pointer mt-golden-md">
-            Lägg i varukorgen
-          </button>
+        <button
+          [disabled]="isInCart"
+          [ngClass]="{
+          'bg-primary hover:bg-primary-40l cursor-pointer': !isInCart,
+          'bg-green-800 cursor-not-allowed': isInCart
+        }"
+        class="text-white py-golden-md rounded-md font-semibold mt-golden-md w-full"
+        (click)="addToCart()"
+      >
+        {{ isInCart ? 'Tillagd i varukorgen' : 'Lägg i varukorgen' }}
+      </button>
   
         <div class="flex text-center font-semibold">
           <div class="flex-1"><p><span class="text-green-600">✓</span> Fri frakt</p></div>
