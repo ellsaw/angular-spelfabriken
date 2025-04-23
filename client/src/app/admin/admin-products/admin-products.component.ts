@@ -1,28 +1,21 @@
 import { Component, inject } from '@angular/core';
-import { ProductsForAdmin } from '../../types/AdminProduct';
-import { AdminService } from '../../services/admin.service';
+import { ProductForAdmin } from '../../types/AdminProduct';
+import { AdminService } from '../../services/admin/admin.service';
 import { CommonModule } from '@angular/common';
-import formatPrice from '../../../utils/formatPrice';
+import { FormatPricePipe } from '../../pipes/format-price/format-price.pipe';
 
 @Component({
   selector: 'app-admin-products',
-  imports: [CommonModule],
+  imports: [CommonModule, FormatPricePipe],
   templateUrl: './admin-products.component.html',
 })
 export class AdminProductsComponent {
   private adminService = inject(AdminService)
 
-  products: ProductsForAdmin[] = [];
+  products: ProductForAdmin[] = [];
 
   fetchProducts(): void{
-    this.adminService.getProductsForAdmin().subscribe((data: ProductsForAdmin[]) => this.products = data)
-
-    this.products.forEach((product) => {
-
-      if(typeof product.price === 'string') return;
-
-      product.price = formatPrice(product.price)
-    })
+    this.adminService.getProductsForAdmin().subscribe((data: ProductForAdmin[]) => this.products = data)
   }
 
   ngOnInit(): void{

@@ -1,0 +1,19 @@
+<div 
+  [ngClass]="{
+    'overflow-hidden': true,
+    'overflow-x-scroll': products,
+    'relative': true,
+    'scrollbar-thin': true,
+    'scrollbar-thumb-primary': true,
+    'scrollbar-track-white': true
+  }"
+>
+  <div class="flex gap-golden-xl relative w-fit py-golden-lg px-golden-lg">
+    <div 
+      *ngFor="let product of products" 
+      class="w-72"
+    >
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+  </div>
+</div>

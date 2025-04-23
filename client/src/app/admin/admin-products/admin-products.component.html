@@ -13,7 +13,7 @@
             <tr *ngFor="let product of products" class="even:bg-neutral-200 has-[.delete-button:hover]:text-red-700">
                 <td>{{product.category}}</td>
                 <td>{{product.brand}} - {{product.product_name}}</td>
-                <td class="text-nowrap">{{product.price}} kr</td>
+                <td class="text-nowrap">{{ product.price | formatPrice }} kr</td>
                 <td>{{product.sku}}</td>
                 <td>
                 <div class="flex gap-golden-sm justify-center">

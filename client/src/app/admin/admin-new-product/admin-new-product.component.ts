@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { AdminService } from '../../services/admin.service';
+import { AdminService } from '../../services/admin/admin.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class AdminNewProductComponent {
     image: new FormControl(null),
   })
 
-  router: Router = inject(Router)
+  private router: Router = inject(Router)
 
   subcategories = [
     [

@@ -1,0 +1,53 @@
+<article class="size-full relative">
+    <a 
+      class="size-full flex flex-col py-golden-md px-golden-sm hover:[&_.title]:text-primary relative"
+      [routerLink]="'/produkt/' + product.slug"
+    >
+      <div 
+        *ngIf="product.campaign_price && (1 - (product.campaign_price / product.price) >= 0.33)"
+        class="absolute size-18 bg-red-600 rounded-full outline-1 outline-red-500 border-2 border-white -left-3 -top-3 flex justify-center items-center -rotate-30 select-none"
+      >
+        <p class="text-2xl font-bold text-white">
+          -{{ Math.ceil((1 - (product.campaign_price / product.price)) * 100) }}%
+        </p>
+      </div>
+  
+      <div class="aspect-video h-1/2">
+        <img 
+          class="object-contain size-full"
+          [src]="product.img"
+          [alt]="product.product_name"
+        />
+      </div>
+  
+      <div class="flex flex-col justify-between flex-1 mt-golden-sm">
+        <div>
+          <h3 class="title leading-5 font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap">
+            {{ product.product_name }}
+          </h3>
+          <p class="text-neutral-500 leading-4">
+            {{ product.brand }}
+          </p>
+        </div>
+  
+        <div class="flex justify-between mt-golden-md">
+          <div class="flex flex-col justify-end">
+            <ng-container *ngIf="product.campaign_price; else noCampaign">
+              <p class="font-light line-through leading-1.5 text-neutral-500">
+                {{ product.price | formatPrice }} kr
+              </p>
+              <p class="font-bold text-red-600 text-xl">
+                {{ product.campaign_price | formatPrice }} kr
+              </p>
+            </ng-container>
+            <ng-template #noCampaign>
+              <p class="font-bold">
+                {{ product.price | formatPrice }} kr
+              </p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </a>
+  </article>
+  

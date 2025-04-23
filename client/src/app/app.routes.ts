@@ -3,11 +3,15 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminNewProductComponent } from './admin/admin-new-product/admin-new-product.component';
 import { PublicLayoutComponent } from './public/public-layout/public-layout.component';
+import { HomeComponent } from './public/home/home.component';
 
 export const routes: Routes = [
     {
         path: "",
-        component: PublicLayoutComponent
+        component: PublicLayoutComponent,
+        children: [
+            {path: "", pathMatch: 'full', component: HomeComponent}
+        ]
     },
     {
         path: "admin",
