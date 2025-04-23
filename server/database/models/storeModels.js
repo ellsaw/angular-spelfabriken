@@ -32,80 +32,23 @@ function dbGetForCampaignCarousel(){
     }
 }
 
-function dbGetForProductShowcase(type){
-    try {
-        let stmt;
-
-        if(type === "bestsellers"){
-            stmt = db.prepare(`
-                SELECT
-                id,
-                product_name,
-                brand,
-                img,
-                price,
-                campaign_price,
-                slug
-                FROM products
-                ORDER BY price DESC
-                LIMIT 5;
-                `)
-
-        }else if(type === "recent"){
-            stmt = db.prepare(`
-                SELECT
-                id,
-                product_name,
-                brand,
-                img,
-                price,
-                campaign_price,
-                slug
-                FROM products
-                ORDER BY id DESC
-                LIMIT 5;
-                `)
-        }else{
-            throw new Error("Invalid type")
-        }
-
-        const products = stmt.all()
-
-        products.forEach(product => {
-            product.img = bufferToImg(product.img);
-        });
-
-        return products;
-
-    } catch (error) {
-        console.error(error.message);
-        return error.message;
-    }
-}
-
-function dbGetForCategory(category){
+function dbGetForGrid(){
     try {
         const stmt = db.prepare(`
             SELECT
             id,
             product_name,
             brand,
-            supercategory,
-            category,
             img,
             price,
             campaign_price,
             slug
             FROM products
-            WHERE category_slug = ? OR supercategory_slug = ?
-            ORDER BY id DESC;
+            ORDER BY id DESC
+            LIMIT 8;
             `)
 
-        const products = stmt.all(category, category)
-
-        if(products.length === 0){
-            throw new Error("Invalid Category")
-        }
+        const products = stmt.all()
 
         products.forEach(product => {
             product.img = bufferToImg(product.img);
@@ -343,4 +286,4 @@ function dbGetForCart(id){
     }
 }
 
-export { dbGetForCampaignCarousel, dbGetForProductShowcase, dbGetForCategory, dbGetForSearch, dbGetForProductDetails, dbGetForRelatedProducts, dbGetForCart }
+export { dbGetForCampaignCarousel, dbGetForGrid, dbGetForSearch, dbGetForProductDetails, dbGetForRelatedProducts, dbGetForCart }

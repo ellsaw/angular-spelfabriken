@@ -88,37 +88,4 @@ function dbDelete(id){
     }
 }
 
-function dbGetForCampaigns(){
-    try {
-        const stmt = db.prepare(`
-            SELECT
-            id,
-            product_name,
-            category,
-            brand,
-            price,
-            campaign_price
-            FROM products
-            ORDER BY id DESC`)
-        return stmt.all();
-    } catch (error) {
-        console.error(error.message)
-        return null;
-    }
-}
-
-function dbSetCampaign(id, campaignPrice){
-    try {
-        const stmt = db.prepare(`
-            UPDATE products 
-            SET campaign_price = ? 
-            WHERE id = ?`)
-
-        stmt.run(campaignPrice, id);
-    } catch (error) {
-        console.error(error.message)
-        return error.message;
-    }
-}
-
-export { dbAdd, dbGetForAdmin, dbDelete, dbGetForCampaigns, dbSetCampaign }
+export { dbAdd, dbGetForAdmin, dbDelete }
