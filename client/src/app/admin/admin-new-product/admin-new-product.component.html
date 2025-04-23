@@ -1,0 +1,53 @@
+<div class="w-full">
+    <form [formGroup]="newProductForm" class="flex flex-col p-golden-lg gap-golden-md rounded-md [&>*]:flex [&>*]:flex-col w-full" (submit)="handleSubmit()">
+        <div>
+            <label for="product_name" class="font-medium">Produktnamn <span class="text-red-700">*</span></label>
+            <input class="outline-1 outline-border rounded-sm px-golden-md py-golden-sm" type="text" formControlName="product_name" id="product_name" required/>
+        </div>
+        <div>
+            <label for="description" class="font-medium">Beskrivning <span class="text-red-700">*</span></label>
+            <textarea class="outline-1 outline-border rounded-sm px-golden-md py-golden-sm" formControlName="description" id="description" required></textarea>
+        </div>
+        <div>
+            <label for="superCategory" class="font-medium">Kategori</label>
+            <select class="outline-1 outline-border rounded-sm px-golden-sm py-golden-sm" id="superCategory" formControlName="superCategory" (change)="handleSubcategoryChange($event)">
+                <option value="0">Spel</option>
+                <option value="1">Konsoller</option>
+                <option value="2">PC</option>
+                <option value="3">TV, Ljud & Bild</option>
+                <option value="4">Hobby</option>
+            </select>
+        </div>
+        <div>
+            <label for="category" class="font-medium">Underkategori</label>
+            <select class="outline-1 outline-border rounded-sm px-golden-sm py-golden-sm" formControlName="category" id="category" required>
+                    <option *ngFor="let category of subcategories[categoryIndex]" value="{{category.value}}">{{category.value}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="brand" class="font-medium">Märke/Tillverkare <span class="text-red-700">*</span></label>
+            <input class="outline-1 outline-border rounded-sm px-golden-md py-golden-sm" type="text" formControlName="brand" id="brand" required/>
+        </div>
+        <div>
+            <label for="sku" class="font-medium">SKU <span class="text-red-700">*</span></label>
+            <input class="outline-1 rounded-sm px-golden-md py-golden-sm" type="text" formControlName="sku" id="sku" pattern="[A-Za-z]{3}[0-9]{3}" maxLength="6" required/>
+        </div>
+        <div>
+            <label for="price" class="font-medium">Pris <span class="text-red-700">*</span></label>
+            <input class="outline-1 outline-border rounded-sm px-golden-md py-golden-sm" type="number" formControlName="price" id="price" required/>
+        </div>
+        <div>
+            <label for="date" class="font-medium">Datum <span class="text-red-700">*</span></label>
+            <input class="outline-1 outline-border rounded-sm px-golden-md py-golden-sm" type="date" formControlName="date" id="date" required/>
+        </div>
+        <div>
+            <label for="image">
+                Produktbild
+            </label>
+            <input class="rounded-sm outline-1 outline-border file:mr-golden-md file:bg-secondary file:text-white file:px-golden-lg file:py-golden-md file:cursor-pointer file:tracking-wider" type="file" formControlName="image" id="image" accept=".webp" required (change)="handleFileChange($event)"/>
+            <p class= "opacity-75 font-light">.WEBP</p>
+        </div>
+        <button class="bg-primary text-white py-golden-md rounded-lg cursor-pointer hover:bg-primary-40l transition-all duration-100" type="submit">Lägg till</button>
+        <p *ngIf="error" class="text-red-700">Ett fel uppstod, prova igen senare</p>
+    </form>
+</div>
