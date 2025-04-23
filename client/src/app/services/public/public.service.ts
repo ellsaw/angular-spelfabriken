@@ -12,4 +12,8 @@ export class PublicService {
   getForCampaignCarousel(): Observable<ProductForCard[]>{
     return this.http.get<ProductForCard[]>('/api/products/store/campaign-carousel')
   }
+
+  getForGrid(): Observable<ProductForCard[]>{
+    return this.http.get<ProductForCard[]>('/api/products/store/grid')
+  }
 }
