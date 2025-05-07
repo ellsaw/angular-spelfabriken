@@ -17,7 +17,6 @@ export class CheckoutComponent {
   ngOnInit(){
     
     this.cartService.cartChange.subscribe(() => {
-      this.cart = this.cartService.getCart();
       this.handleCartChange();
     });
 
